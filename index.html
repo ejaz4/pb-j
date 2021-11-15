@@ -1,0 +1,281 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+<div id="loading">
+    <svg id="logo" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 5L1.63809 4.84048C3.71834 4.32041 5.36294 2.72973 5.95201 0.66795L5.99824 0.506174C5.99852 0.505172 6 0.505379 6 0.506421V8.08233C6 8.86529 5.36529 9.5 4.58233 9.5V9.5C3.37114 9.5 2.71772 8.07933 3.50595 7.15972L6.45237 3.72223C7.11731 2.94647 8.08804 2.5 9.10977 2.5H11" stroke="black" />
+    </svg>
+  </div>
+  
+  <input type="file" id="fileReader" onchange="uploadFile(this)" multiple>
+  
+  <div id="contextMenu">
+    <div id="contextMenu-actions">
+      <button id="undo">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.0174 14.3859C17.0612 7.37377 8.02337 5.13943 3.90994 10.8982L2.94454 12.2498H7.00321V14.2507H0V7.2475H2.00092V10.1284L2.28173 9.73522C7.44798 2.50247 18.7991 5.30868 20 14.1155L18.0174 14.3859Z" fill="black"/>
+      </svg>
+      </button><button id="redo">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.98257 14.3859C2.93877 7.37377 11.9766 5.13943 16.0901 10.8982L17.0555 12.2498H12.9968V14.2507H20V7.2475H17.9991V10.1284L17.7183 9.73522C12.552 2.50247 1.20093 5.30868 0 14.1155L1.98257 14.3859Z" fill="black"/>
+        </svg>
+      </button><button id="cut">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M8 15.8049C8 18.014 6.20914 19.8049 4 19.8049C1.79086 19.8049 0 18.014 0 15.8049C0 13.5957 1.79086 11.8049 4 11.8049C4.69002 11.8049 5.33923 11.9796 5.90581 12.2872L8.73837 8.60486L3.20738 1.41457L4.79262 0.195145L10 6.96473L15.2074 0.195145L16.7926 1.41457L11.2616 8.60486L14.0942 12.2872C14.6608 11.9796 15.31 11.8049 16 11.8049C18.2091 11.8049 20 13.5957 20 15.8049C20 18.014 18.2091 19.8049 16 19.8049C13.7909 19.8049 12 18.014 12 15.8049C12 15.0145 12.2292 14.2777 12.6248 13.6572L10 10.245L7.37518 13.6572C7.77077 14.2777 8 15.0145 8 15.8049ZM4 17.8049C5.10457 17.8049 6 16.9094 6 15.8049C6 14.7003 5.10457 13.8049 4 13.8049C2.89543 13.8049 2 14.7003 2 15.8049C2 16.9094 2.89543 17.8049 4 17.8049ZM16 17.8049C17.1046 17.8049 18 16.9094 18 15.8049C18 14.7003 17.1046 13.8049 16 13.8049C14.8954 13.8049 14 14.7003 14 15.8049C14 16.9094 14.8954 17.8049 16 17.8049Z" fill="black"/>
+        </svg>
+      </button><button id="copy">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3 2C2.44772 2 2 2.44772 2 3V11C2 11.5523 2.44772 12 3 12H11C11.5523 12 12 11.5523 12 11V3C12 2.44772 11.5523 2 11 2H3ZM0 3C0 1.34315 1.34315 0 3 0H11C12.6569 0 14 1.34315 14 3V11C14 12.6569 12.6569 14 11 14H3C1.34315 14 0 12.6569 0 11V3Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M16 6H17C18.6569 6 20 7.34315 20 9V17C20 18.6569 18.6569 20 17 20H9C7.34315 20 6 18.6569 6 17V16H8V17C8 17.5523 8.44772 18 9 18H17C17.5523 18 18 17.5523 18 17V9C18 8.44772 17.5523 8 17 8H16V6Z" fill="black" fill-opacity="0.5"/>
+      </svg>
+      </button><button id="paste">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4C4.44772 4 4 4.44772 4 5V17C4 17.5523 4.44772 18 5 18H15C15.5523 18 16 17.5523 16 17V5C16 4.44772 15.5523 4 15 4V2C16.6569 2 18 3.34315 18 5V17C18 18.6569 16.6569 20 15 20H5C3.34315 20 2 18.6569 2 17V5C2 3.34315 3.34315 2 5 2V4Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M6 2C6 0.89543 6.89543 0 8 0H12C13.1046 0 14 0.89543 14 2V4C14 5.10457 13.1046 6 12 6H8C6.89543 6 6 5.10457 6 4V2ZM12 2H8V4H12V2Z" fill="black"/>
+        </svg>
+      </button><button id="all">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M5 2C4.44772 2 4 2.44772 4 3H2C2 1.34315 3.34315 0 5 0H15C16.6569 0 18 1.34315 18 3H16C16 2.44772 15.5523 2 15 2H5ZM5 20C3.34315 20 2 18.6569 2 17H4C4 17.5523 4.44772 18 5 18H15C15.5523 18 16 17.5523 16 17H18C18 18.6569 16.6569 20 15 20H5Z" fill="black" fill-opacity="0.5"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6C2.44772 6 2 6.44772 2 7V13C2 13.5523 2.44772 14 3 14H17C17.5523 14 18 13.5523 18 13V7C18 6.44772 17.5523 6 17 6H3ZM0 7C0 5.34315 1.34315 4 3 4H17C18.6569 4 20 5.34315 20 7V13C20 14.6569 18.6569 16 17 16H3C1.34315 16 0 14.6569 0 13V7Z" fill="black"/>
+        </svg>
+      </button>
+    </div>
+    <!--<div id="contextMenu-spellcheck">
+      <span>Did you mean...</span>
+      <button>
+        colour
+      </button>
+      <button>
+        colon
+      </button>
+      <button class="split">
+        <span>Collin</span>
+        <span class="sub">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.92965 10.3675L7.32639 9.18201H9.13403L9.53312 10.3675H10.4628L8.76781 5.55968H7.69261L6 10.3675H6.92965ZM7.56115 8.48243L8.21143 6.54567H8.24899L8.89927 8.48243H7.56115Z" fill="black"/>
+            <path d="M12.0961 10.4403C12.6619 10.4403 12.9999 10.175 13.1549 9.8722H13.183V10.3675H14V7.95422C14 7.0011 13.2229 6.71469 12.5351 6.71469C11.7768 6.71469 11.1946 7.05275 11.0068 7.71007L11.8003 7.82276C11.8848 7.57626 12.1243 7.36498 12.5398 7.36498C12.9342 7.36498 13.1502 7.56687 13.1502 7.92136V7.93544C13.1502 8.16523 12.9235 8.18914 12.3664 8.24792C12.3316 8.25159 12.2955 8.2554 12.2581 8.25941C11.5585 8.33453 10.8894 8.54347 10.8894 9.35573C10.8894 10.0647 11.4083 10.4403 12.0961 10.4403ZM12.3168 9.81586C11.9623 9.81586 11.7088 9.65388 11.7088 9.34165C11.7088 9.01533 11.9928 8.87917 12.3731 8.82518C12.3851 8.82354 12.3977 8.82182 12.4109 8.82003C12.6431 8.78851 13.0481 8.73352 13.1525 8.64911V9.07402C13.1525 9.47546 12.8286 9.81586 12.3168 9.81586Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 3C2 1.34315 3.34315 0 5 0H15C16.6569 0 18 1.34315 18 3V17C18 18.6569 16.6569 20 15 20H5C3.34315 20 2 18.6569 2 17V3ZM5 2C4.44772 2 4 2.44772 4 3V14.1707C4.31278 14.0602 4.64936 14 5 14H15C15.5523 14 16 13.5523 16 13V3C16 2.44772 15.5523 2 15 2H5ZM7.32639 9.18201L6.92965 10.3675H6L7.69261 5.55968H8.76781L10.4628 10.3675H9.53312L9.13403 9.18201H7.32639ZM13.1549 9.8722C12.9999 10.175 12.6619 10.4403 12.0961 10.4403C11.4083 10.4403 10.8894 10.0647 10.8894 9.35573C10.8894 8.54347 11.5585 8.33453 12.2581 8.25941L12.3664 8.24792C12.9235 8.18914 13.1502 8.16523 13.1502 7.93544V7.92136C13.1502 7.56687 12.9342 7.36498 12.5398 7.36498C12.1243 7.36498 11.8848 7.57626 11.8003 7.82276L11.0068 7.71007C11.1946 7.05275 11.7768 6.71469 12.5351 6.71469C13.2229 6.71469 14 7.0011 14 7.95422V10.3675H13.183V9.8722H13.1549ZM4 17C4 17.5523 4.44772 18 5 18H15C15.5523 18 16 17.5523 16 17V15.8293C15.6872 15.9398 15.3506 16 15 16H5C4.44772 16 4 16.4477 4 17ZM7.56115 8.48243L8.21143 6.54567H8.24899L8.89927 8.48243H7.56115ZM11.7088 9.34165C11.7088 9.65388 11.9623 9.81586 12.3168 9.81586C12.8286 9.81586 13.1525 9.47546 13.1525 9.07402V8.64911C13.0481 8.73352 12.6431 8.78851 12.4109 8.82003C12.3977 8.82182 12.3851 8.82354 12.3731 8.82518C11.9928 8.87917 11.7088 9.01533 11.7088 9.34165Z" fill="black"/>
+          </svg>
+        </span>
+      </button>
+      <button id="addToDictionary">
+        <span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.92965 10.3675L7.32639 9.18201H9.13403L9.53312 10.3675H10.4628L8.76781 5.55968H7.69261L6 10.3675H6.92965ZM7.56115 8.48243L8.21143 6.54567H8.24899L8.89927 8.48243H7.56115Z" fill="black"/>
+            <path d="M12.0961 10.4403C12.6619 10.4403 12.9999 10.175 13.1549 9.8722H13.183V10.3675H14V7.95422C14 7.0011 13.2229 6.71469 12.5351 6.71469C11.7768 6.71469 11.1946 7.05275 11.0068 7.71007L11.8003 7.82276C11.8848 7.57626 12.1243 7.36498 12.5398 7.36498C12.9342 7.36498 13.1502 7.56687 13.1502 7.92136V7.93544C13.1502 8.16523 12.9235 8.18914 12.3664 8.24792C12.3316 8.25159 12.2955 8.2554 12.2581 8.25941C11.5585 8.33453 10.8894 8.54347 10.8894 9.35573C10.8894 10.0647 11.4083 10.4403 12.0961 10.4403ZM12.3168 9.81586C11.9623 9.81586 11.7088 9.65388 11.7088 9.34165C11.7088 9.01533 11.9928 8.87917 12.3731 8.82518C12.3851 8.82354 12.3977 8.82182 12.4109 8.82003C12.6431 8.78851 13.0481 8.73352 13.1525 8.64911V9.07402C13.1525 9.47546 12.8286 9.81586 12.3168 9.81586Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 3C2 1.34315 3.34315 0 5 0H15C16.6569 0 18 1.34315 18 3V17C18 18.6569 16.6569 20 15 20H5C3.34315 20 2 18.6569 2 17V3ZM5 2C4.44772 2 4 2.44772 4 3V14.1707C4.31278 14.0602 4.64936 14 5 14H15C15.5523 14 16 13.5523 16 13V3C16 2.44772 15.5523 2 15 2H5ZM7.32639 9.18201L6.92965 10.3675H6L7.69261 5.55968H8.76781L10.4628 10.3675H9.53312L9.13403 9.18201H7.32639ZM13.1549 9.8722C12.9999 10.175 12.6619 10.4403 12.0961 10.4403C11.4083 10.4403 10.8894 10.0647 10.8894 9.35573C10.8894 8.54347 11.5585 8.33453 12.2581 8.25941L12.3664 8.24792C12.9235 8.18914 13.1502 8.16523 13.1502 7.93544V7.92136C13.1502 7.56687 12.9342 7.36498 12.5398 7.36498C12.1243 7.36498 11.8848 7.57626 11.8003 7.82276L11.0068 7.71007C11.1946 7.05275 11.7768 6.71469 12.5351 6.71469C13.2229 6.71469 14 7.0011 14 7.95422V10.3675H13.183V9.8722H13.1549ZM4 17C4 17.5523 4.44772 18 5 18H15C15.5523 18 16 17.5523 16 17V15.8293C15.6872 15.9398 15.3506 16 15 16H5C4.44772 16 4 16.4477 4 17ZM7.56115 8.48243L8.21143 6.54567H8.24899L8.89927 8.48243H7.56115ZM11.7088 9.34165C11.7088 9.65388 11.9623 9.81586 12.3168 9.81586C12.8286 9.81586 13.1525 9.47546 13.1525 9.07402V8.64911C13.0481 8.73352 12.6431 8.78851 12.4109 8.82003C12.3977 8.82182 12.3851 8.82354 12.3731 8.82518C11.9928 8.87917 11.7088 9.01533 11.7088 9.34165Z" fill="black"/>
+          </svg>
+        </span>
+        <span>Add to dictionary</span>
+      </button>
+    </div>-->
+  </div>
+  
+  <div id="finder" onblur="this.focus()">
+    <div>
+      <input id="search" placeholder="Search for a file or an action..." autocomplete="off">
+      <div id="results" tabindex="-1">
+      </div>
+      
+      <div id="buttons">
+        <span>
+          <span class="kbd">Tab</span> to navigate
+        </span>
+        <span>
+          <span class="kbd">Enter</span> to select
+          <span class="color:var(--text-sub)">│</span>
+          <span class="kbd">Esc</span> to escape
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  <div id="fileDrop">
+    <div>
+      <span>Hey there files, come on down!</span>
+    </div>
+  </div>
+  
+  <div id="grid">
+    <div id="nav">
+      <div>
+        <button id="currentFile">
+          <span id="fileName"></span>
+          <span id="toggleFiles">&lt;--</span>
+        </button>
+      </div>
+      <div>
+        <div id="actions">
+          <button id="new">
+            New
+          </button><button id="rename">
+            Rename
+          </button><button id="export">
+            Export
+          </button><button id="delete">
+            Delete
+          </button><button id="settings">
+            Settings
+          </button>
+        </div>
+      </div>
+      <div>
+        <button id="account">
+          <div id="accountStatus"></div>
+        </button>
+        <button id="noAccount" style="display:none;">
+          Sign in
+        </button>
+      </div>
+    </div>
+    <div id="main">
+      <div id="sidebar" tabindex="<-1></-1>">
+        <div id="filesHolder" tabindex="-1">
+          <div id="files" tabindex="-1">
+          </div>
+        </div>
+        <div id="storage">
+          <div id="storageTitle">
+            <span>
+              Storage
+            </span>
+            <div id="toggleStorage">
+              ↓
+            </div>
+          </div>
+          <div id="meter-local" class="spaceMeter">
+            <div>
+              <div id="meter-local-amount"></div>
+            </div>
+            <span><span id="meter-local-count">0B</span> of 4MB used locally</span>
+          </div>
+          <div id="meter-cloud" class="spaceMeter">
+            <div>
+              <div id="meter-cloud-amount"></div>
+            </div>
+            <span><span id="meter-cloud-count">0B</span> of 4MB used in Filespace</span>
+          </div>
+        </div>
+      </div>
+      <div id="workspace">
+        <!--
+          Loading
+        -->
+        <svg id="loadingFile" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 5L1.63809 4.84048C3.71834 4.32041 5.36294 2.72973 5.95201 0.66795L5.99824 0.506174C5.99852 0.505172 6 0.505379 6 0.506421V8.08233C6 8.86529 5.36529 9.5 4.58233 9.5V9.5C3.37114 9.5 2.71772 8.07933 3.50595 7.15972L6.45237 3.72223C7.11731 2.94647 8.08804 2.5 9.10977 2.5H11" stroke="black" />
+        </svg>
+  
+        <!--
+          Textarea
+        -->
+        <textarea id="textarea" placeholder="Write something beautiful, just like you. :)"></textarea>
+  
+        <!--
+          New file
+        -->
+        <div id="newFile" class="page">
+          <div>
+            <h1>
+              Hey there, Matthew
+            </h1>
+            <p class="subtitle">
+              Ready to create your next masterpiece?
+            </p>
+            <div class="pageGrid">
+              <div id="new-createNew">
+                Create new file
+                <br />
+                <small>
+                  Create a spankin' new file.
+                </small>
+              </div>
+              <div id="new-ee">
+                Use the Easy Editor™
+                <br />
+                <small>
+                  Write documents easier and faster using our Easy Editor™.
+                </small>
+              </div>
+              <div id="new-upload">
+                Upload from computer
+                <br />
+                <small>
+                  Import a file from your computer!
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!--
+          No file open
+        -->
+        <div id="noFileOpen">
+        </div>
+  
+        <!--
+          Settings
+        -->
+        <div id="settingsArea" class="page">
+          <div>
+            <h1>
+              Settings
+            </h1>
+            <p>
+              Themes
+            </p>
+            <form>
+              <label for="theme-light">
+                <span class="custom-radio">
+                  <input id="theme-light" type="radio" name="theme" value="light">
+                  <div class="custom-radio-button"></div>
+                </span>
+                <span>
+                  Light
+                </span>
+              </label>
+              <label for="theme-dark">
+                <span class="custom-radio">
+                  <input id="theme-dark" type="radio" name="theme" value="light">
+                  <div class="custom-radio-button"></div>
+                </span>
+                <span>
+                  Dark
+                </span>
+              </label>
+              <label for="theme-url">
+                <span class="custom-radio">
+                  <input id="theme-url" type="radio" name="theme" value="light">
+                  <div class="custom-radio-button"></div>
+                </span>
+                <span>
+                  From URL
+                  <br />
+                  <input type="text">
+                </span>
+              </label>
+              <label for="theme-custom">
+                <span class="custom-radio">
+                  <input id="theme-custom" type="radio" name="theme" value="light">
+                  <div class="custom-radio-button"></div>
+                </span>
+                <span>
+                  Custom
+                  <br />
+                  <button>
+                    Create theme.jumble file
+                  </button>
+                </span>
+              </label>
+            </form>
+  
+          </div>
+        </div>
+      </div>
+      <iframe id="preview" style="display:none;" sandbox>
+      </iframe>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
